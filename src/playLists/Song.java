@@ -7,14 +7,13 @@ package playLists;
 
 public class Song {
 
-    public String title;
-    public int id;
-    public String dateDebuted;
-    public String songLength;
-    public String gender;
-    public String cover;
-    public String description;
-
+    private String title;
+    private int id;
+    private String dateDebuted;
+    private String songLength;
+    private String gender;
+    private String cover;
+    private String description;
 
     //Constructor of the class
     public Song(String title, int id,String dateDebuted, String songLength, String gender,
@@ -28,15 +27,71 @@ public class Song {
         this.description = description;
     }
 
-    /**
-    public void showSongs (int n){
-        if (n == this.id){
+    @Override
+    public String toString() {
+        return "Song > " +
+                "title: '" + title + '\'' +
+                ", id: " + id +
+                ", dateDebuted: '" + dateDebuted + '\'' +
+                ", songLength: '" + songLength + '\'' +
+                ", gender: '" + gender + '\'' +
+                ", cover: '" + cover + '\'' +
+                ", description: '" + description + '\''
+                ;
+    }
 
-        }
-    }*/
+    //Getters and Setters
+    public int getId() {
+        return this.id;
+    }
 
+    public String getDateDebuted() {
+        return this.dateDebuted;
+    }
 
+    public String getGender() { return this.gender; }
 
+    public String getTitle() {
+        return title;
+    }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDateDebuted(String dateDebuted) {
+        this.dateDebuted = dateDebuted;
+    }
+
+    public String getSongLength() {
+        return songLength;
+    }
+
+    public void setSongLength(String songLength) {
+        this.songLength = songLength;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getCover() {
+        return this.cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
