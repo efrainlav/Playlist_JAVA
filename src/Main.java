@@ -1,43 +1,67 @@
 import playLists.Song;
-
-
-import java.util.*;
+import java.util.ArrayList;
 
 public class Main {
 
+    static ArrayList<Song> songs = new ArrayList<>();//para tener todas las canciones
+    static ArrayList<Song> listFilterById = new ArrayList<>();//Para filtrar por id
+    static ArrayList<Song> listFilterByYear = new ArrayList<>();//para filtrar por year
+    static ArrayList<Song> listFilterByGender = new ArrayList<>();//para filtrar por genero
+
     public static void main(String[] args) {
-
-        /**
-        LinkedList songs =new LinkedList();
-        ListIterator listIterator = songs.listIterator();
-
-
-        Song song1 = new Song("Otra noche en Miami", 01, "2018",
+        //creacion de canciones
+        Song song1 = new Song("Otra noche en Miami", 1, "2018",
                 "3 min 30 segundos", "Trapp", "Ojo","Cancion del album de Bad bunny");
 
-        Song song2 = new Song("Otra noche", 02, "12/03/2018",
-                "3 min 30 segundos", "Reggateon", "Ojo","Cancion del album de Bad bunny");
+        Song song2 = new Song("Yonaguni", 1, "2019",
+                "4 min 20 segundos", "Trapp", "Camion","Cancion del album de Bad bunny Ultimo tour del mundo");
 
+        Song song3 = new Song("Si veo a tu mama", 2, "2020",
+                "2 min 50 segundos", "Trapp", "nino en cicla","Cancion del album de Bad bunny YHLQMDLG");
         songs.add(song1);
         songs.add(song2);
+        songs.add(song3);
+        System.out.println("Todas las canciones: ");
+        System.out.println(songs.toString());
+        filteredById(1);
+        filteredByYear("2018");
+        filteredByGender("Trapp");
 
-        for (int i = 0; i <songs.size() ; i++) {
-            System.out.println(songs.iterator());
-        }*/
-        Map<Integer, String, String, String> map = new HashMap<Integer, String, String, String>();
-        map.put(1, "Casillas");		map.put(15, "Ramos");
-        map.put(3, "Pique");		map.put(5, "Puyol");
-        map.put(11, "Capdevila");	map.put(14, "Xabi Alonso");
-        map.put(16, "Busquets");	map.put(8, "Xavi Hernandez");
-        map.put(18, "Pedrito");		map.put(6, "Iniesta");
-        map.put(7, "Villa");
+    }
 
-        // Imprimimos el Map con un Iterador
-        Iterator it = map.keySet().iterator();
-        while(it.hasNext()) {
-            Integer key = (Integer) it.next();
-            System.out.println("Clave: " + key + " -> Valor: " + map.get(key));
-
+    public static void filteredById (int n) {
+        for (int i = 0; i < songs.size() ; ++i) {
+            if (songs.get(i).getId() == n){
+                listFilterById.add(songs.get(i));
+            }
         }
+        System.out.println("List of songs filtered by ID: ");
+        for (int i = 0; i < listFilterById.size(); ++i) {
+            System.out.println(listFilterById.get(i).toString());
+        }
+    }
+
+    public static void filteredByYear(String year) {
+        for (int i = 0; i < songs.size() ; ++i) {
+            if (year.equals(songs.get(i).getDateDebuted())){
+                listFilterByYear.add(songs.get(i));
+            }
+        }
+        System.out.println("List of songs filtered by Year: ");
+        for (int i = 0; i < listFilterByYear.size(); ++i) {
+            System.out.println(listFilterByYear.get(i).toString());
+        }
+    }
+
+        public static void filteredByGender(String gender) {
+            for (int i = 0; i < songs.size() ; ++i) {
+                if (gender.equals(songs.get(i).getGender())){
+                    listFilterByGender.add(songs.get(i));
+                }
+            }
+            System.out.println("List of songs filtered by Gender: ");
+            for (int i = 0; i < listFilterByGender.size(); ++i) {
+                System.out.println(listFilterByGender.get(i).toString());
+            }
     }
 }
