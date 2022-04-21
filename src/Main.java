@@ -7,6 +7,9 @@ public class Main {
     static Scanner scanner = new Scanner(System.in); //Java tool for user input data
     static int select = -1; //User choise temporal
     static ArrayList<Song> songs = new ArrayList<>();//create a new array of songs.
+    static ArrayList<Song> newplaylist = new ArrayList<>();//create a new array of songs for the new playlist.
+    static ArrayList<Song> templaylist = new ArrayList<>();//create a new array of songs for the new playlist.
+
     static ArrayList<Song> listFilterById = new ArrayList<>();//Create a new array of sons for teh filter by ID
     static ArrayList<Song> listFilterByYear = new ArrayList<>();//Create a new array of sons for teh filter by dateDebuted
     static ArrayList<Song> listFilterByGender = new ArrayList<>();//Create a new array of sons for teh filter by Gender
@@ -46,10 +49,10 @@ public class Main {
 		while(select != 0){
 			//Try catch to avoid the sudden end of the proggrame
 			try{
-                clearScreen();
-				System.out.println("Elige opción:\n" +
+                /**clearScreen();*/
+				System.out.println("Select an option:\n" +
                         "1.- Show Original Playlists Songs\n" +
-                        "2.- Create New Playlist\n" +
+                        "2.- Create a New Playlist\n" +
 						"3.- Filter Original Playlists by Debut Years\n" +
 						"4.- Filter Original Playlists by Gender\n" +
 						"5.- Sort Original Playlists by Debut Years\n" +
@@ -64,43 +67,60 @@ public class Main {
 				case 1:
                 System.out.println("Original Playlist: ");
                 System.out.println(songs.toString());
-                System.in.read();
                 System.out.println("\n"); //Show a line break
 					break;
 
 				case 2:
-                filteredById(1);
-                System.in.read();
+
+                newplaylist = newPlaylist();
+                System.out.println("\n"); //Show a line break
+                System.out.println("New Playlist: ");
+                System.out.println(newplaylist.toString());
+
+
+
+                /**newPlaylist();
+                System.in.read();*/
 
 					break;
 
 				case 3:
                 filteredByYear("2018");
                 System.in.read();
+                System.out.println("\n"); //Show a line break
+
 
 					break;
 
 				case 4: 
                 filteredByGender("Trapp");
                 System.in.read();
+                System.out.println("\n"); //Show a line break
+
 
 					break;
 
 				case 5: 
                 filteredByYear("2018");
                 System.in.read();
+                System.out.println("\n"); //Show a line break
+
 
 					break;
 
 				case 0: 
 					System.out.println("Stay tuned!!!");
                     System.in.read();
+                    System.out.println("\n"); //Show a line break
+
 
 					break;
 
 				default:
 					System.out.println("That selection is not supported");
                     System.in.read();
+                    System.out.println("\n"); //Show a line break
+
                     break;
 
 				}
@@ -109,6 +129,7 @@ public class Main {
 				
 			}catch(Exception e){
 				System.out.println("Hey Bro!, That's not the move!!!, Try again");
+                System.out.println("\n"); //Show a line break
                 
 			}
 		}
@@ -119,7 +140,38 @@ public class Main {
 
     }
 
-    public static void filteredById (int n) {
+    public static ArrayList<Song> newPlaylist(){
+        int id = -1;
+        int option = -1;
+        while(option != 0){
+            // System.out.println("Original Playlist: ");
+            // System.out.println(songs.toString());
+            System.out.println("\n"); //Show a line break
+            System.out.println("Input the ID of song to add:");
+            //Recoger una variable por consola
+            id = Integer.parseInt(scanner.nextLine());
+            System.out.println(id); //Show a line break
+            templaylist=filteredById(id);
+            newplaylist.addAll(templaylist);
+            System.out.println("Do you want to add more songs?:\n" +
+            "1.- YES\n" +
+            "2.- NO\n");
+            option = Integer.parseInt(scanner.nextLine());
+            if(option == 1){
+                System.out.println("Look again the Original PLaylist.");
+            } else{
+                option=0;
+                System.out.println("Enjoy your music!!");
+            }
+        }
+
+        return templaylist;
+    }
+
+
+
+
+    public static ArrayList<Song> filteredById (int n) {
         for (int i = 0; i < songs.size() ; ++i) {
             if (songs.get(i).getId() == n){
                 listFilterById.add(songs.get(i));
@@ -129,7 +181,12 @@ public class Main {
         for (int i = 0; i < listFilterById.size(); ++i) {
             System.out.println(listFilterById.get(i).toString());
         }
+
+        return listFilterById;
     }
+
+
+
 
     public static void filteredByYear(String year) {
         for (int i = 0; i < songs.size() ; ++i) {
@@ -143,6 +200,9 @@ public class Main {
         }
     }
 
+
+
+
     public static void filteredByGender(String gender) {
         for (int i = 0; i < songs.size() ; ++i) {
             if (gender.equals(songs.get(i).getGender())){
@@ -154,6 +214,9 @@ public class Main {
             System.out.println(listFilterByGender.get(i).toString());
         }
     }
+
+
+
 
     public static void clearScreen() {  
         System.out.print("\033[H\033[2J");  

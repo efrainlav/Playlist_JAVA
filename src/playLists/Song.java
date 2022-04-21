@@ -36,8 +36,8 @@ public class Song {
                 ", songLength: '" + songLength + '\'' +
                 ", gender: '" + gender + '\'' +
                 ", cover: '" + cover + '\'' +
-                ", description: '" + description + '\''
-                ;
+                ", description: '" + description + '\'' + ".\n"; //Show a line break
+
     }
 
     //Getters and Setters
