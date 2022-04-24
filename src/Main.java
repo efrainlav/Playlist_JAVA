@@ -29,10 +29,10 @@ public class Main {
         Song song3 = new Song("Si veo a tu mama", 3, "2020",
                 "2 min 50 segundos", "Trapp", "nino en cicla","Cancion del album de Bad bunny YHLQMDLG");
         
-        Song song4 = new Song("Si veo a tu mama", 4, "2020",
+        Song song4 = new Song("Si veo a tu mama", 4, "2022",
                 "2 min 50 segundos", "Trapp", "nino en cicla","Cancion del album de Bad bunny YHLQMDLG");
         
-        Song song5 = new Song("Si veo a tu mama", 5, "2020",
+        Song song5 = new Song("Si veo a tu mama", 5, "2017",
                 "2 min 50 segundos", "Trapp", "nino en cicla","Cancion del album de Bad bunny YHLQMDLG");
         
         
@@ -65,47 +65,37 @@ public class Main {
 				switch(select){
 
 				case 1:
+                System.out.println();
                 System.out.println("Original Playlist: ");
                 System.out.println(songs.toString());
                 System.out.println("\n"); //Show a line break
+
 					break;
 
 				case 2:
-
+                templaylist.removeAll(templaylist);
+                newplaylist.removeAll(newplaylist);
                 newplaylist = newPlaylist();
                 System.out.println("\n"); //Show a line break
                 System.out.println("New Playlist: ");
                 System.out.println(newplaylist.toString());
-
-
-
-                /**newPlaylist();
-                System.in.read();*/
-
+                
 					break;
 
 				case 3:
-                filteredByYear("2018");
-                System.in.read();
+                filteredByYear();
                 System.out.println("\n"); //Show a line break
-
-
 					break;
 
 				case 4: 
                 filteredByGender("Trapp");
                 System.in.read();
                 System.out.println("\n"); //Show a line break
-
-
 					break;
 
 				case 5: 
-                filteredByYear("2018");
-                System.in.read();
+                filteredByYear();
                 System.out.println("\n"); //Show a line break
-
-
 					break;
 
 				case 0: 
@@ -140,6 +130,11 @@ public class Main {
 
     }
 
+
+/**
+ * Method to create a new playlist of song
+ * @return temporal playlist with the selected songs.
+ */
     public static ArrayList<Song> newPlaylist(){
         int id = -1;
         int option = -1;
@@ -148,7 +143,7 @@ public class Main {
             // System.out.println(songs.toString());
             System.out.println("\n"); //Show a line break
             System.out.println("Input the ID of song to add:");
-            //Recoger una variable por consola
+            //Input the value of the id to search
             id = Integer.parseInt(scanner.nextLine());
             System.out.println(id); //Show a line break
             templaylist=filteredById(id);
@@ -162,11 +157,18 @@ public class Main {
             } else{
                 option=0;
                 System.out.println("Enjoy your music!!");
+
             }
         }
 
         return templaylist;
     }
+
+
+
+
+
+
 
 
 
@@ -187,13 +189,23 @@ public class Main {
 
 
 
+        /**
+     * Method to filter any song by the year of debuted
+     * @return the song filtere
+     */
 
-    public static void filteredByYear(String year) {
+    public static void filteredByYear() {
+        String year;
+        System.out.println("\n"); //Show a line break
+        System.out.println("Input the year:");
+        //Input the value of the id to search
+        year = scanner.nextLine();
         for (int i = 0; i < songs.size() ; ++i) {
             if (year.equals(songs.get(i).getDateDebuted())){
-                listFilterByYear.add(songs.get(i));
-            }
+            listFilterByYear.add(songs.get(i));
+         }
         }
+        
         System.out.println("List of songs filtered by Year: ");
         for (int i = 0; i < listFilterByYear.size(); ++i) {
             System.out.println(listFilterByYear.get(i).toString());

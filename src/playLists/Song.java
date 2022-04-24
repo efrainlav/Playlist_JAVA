@@ -36,7 +36,8 @@ public class Song {
                 ", songLength: '" + songLength + '\'' +
                 ", gender: '" + gender + '\'' +
                 ", cover: '" + cover + '\'' +
-                ", description: '" + description + '\'' + ".\n"; //Show a line break
+                ", description: '" + description + '\'' + ".\n"+"\n"; // Show a doble line break
+                
 
     }
 
