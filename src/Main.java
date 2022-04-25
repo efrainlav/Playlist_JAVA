@@ -7,8 +7,8 @@ public class Main {
     static Scanner scanner = new Scanner(System.in); //Java tool for user input data
     static int select = -1; //User choise temporal
     static ArrayList<Song> songs = new ArrayList<>();//create a new array of songs.
-    static ArrayList<Song> newplaylist = new ArrayList<>();//create a new array of songs for the new playlist.
-    static ArrayList<Song> templaylist = new ArrayList<>();//create a new array of songs for the new playlist.
+    public static ArrayList<Song> newplaylist = new ArrayList<>();//create a new array of songs for the new playlist.
+    public static ArrayList<Song> templaylist = new ArrayList<>();//create a new array of songs for the new playlist.
 
     static ArrayList<Song> listFilterById = new ArrayList<>();//Create a new array of sons for teh filter by ID
     static ArrayList<Song> listFilterByYear = new ArrayList<>();//Create a new array of sons for teh filter by dateDebuted
@@ -73,8 +73,7 @@ public class Main {
 					break;
 
 				case 2:
-                templaylist.removeAll(templaylist);
-                newplaylist.removeAll(newplaylist);
+
                 newplaylist = newPlaylist();
                 System.out.println("\n"); //Show a line break
                 System.out.println("New Playlist: ");
@@ -138,6 +137,7 @@ public class Main {
     public static ArrayList<Song> newPlaylist(){
         int id = -1;
         int option = -1;
+        newplaylist.removeAll(newplaylist);
         while(option != 0){
             // System.out.println("Original Playlist: ");
             // System.out.println(songs.toString());
@@ -154,6 +154,7 @@ public class Main {
             option = Integer.parseInt(scanner.nextLine());
             if(option == 1){
                 System.out.println("Look again the Original PLaylist.");
+                templaylist=null;
             } else{
                 option=0;
                 System.out.println("Enjoy your music!!");
@@ -161,7 +162,7 @@ public class Main {
             }
         }
 
-        return templaylist;
+        return newplaylist;
     }
 
 
